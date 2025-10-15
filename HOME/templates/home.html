@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weebrary</title>
+    <title>Kitsu API</title>
 </head>
 <body>
-    <p>HELLO, WEEB!</p>
+    <h1>Call Kitsu API</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Fetch Anime</button>
+    </form>
+
+    {% if data %}
+        <ul>
+            {% for anime in data.data %}
+                <li>{{ anime.attributes.canonicalTitle }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>
